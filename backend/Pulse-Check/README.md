@@ -35,8 +35,8 @@ stateDiagram-v2
 **Prerequisites:** Python 3.10+
 
 ```bash
-git clone <your-repo-url>
-cd pulse-check-api
+git clone https://github.com/SHYAKA-Aime/AmaliTech-DEG-Project-based-challenges.git
+cd AmaliTech-DEG-Project-based-challenges/backend/Pulse-Check
 
 python3 -m venv venv
 source venv/bin/activate
