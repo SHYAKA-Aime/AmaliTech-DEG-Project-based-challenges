@@ -47,7 +47,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-The API is now live at `http://127.0.0.1:8000/api/`.
+The API will be live at `http://127.0.0.1:8000/api/`.
 
 ---
 
@@ -55,20 +55,21 @@ The API is now live at `http://127.0.0.1:8000/api/`.
 
 Base URL: `http://127.0.0.1:8000/api`
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/monitors/` | Register a new monitor |
-| `GET` | `/monitors/` | List all monitors |
-| `GET` | `/monitors/{id}/` | Get a single monitor |
-| `POST` | `/monitors/{id}/heartbeat/` | Reset the countdown timer |
-| `POST` | `/monitors/{id}/pause/` | Pause monitoring |
-| `DELETE` | `/monitors/{id}/` | Remove a monitor |
+| Method   | Endpoint                    | Description               |
+| -------- | --------------------------- | ------------------------- |
+| `POST`   | `/monitors/`                | Register a new monitor    |
+| `GET`    | `/monitors/`                | List all monitors         |
+| `GET`    | `/monitors/{id}/`           | Get a single monitor      |
+| `POST`   | `/monitors/{id}/heartbeat/` | Reset the countdown timer |
+| `POST`   | `/monitors/{id}/pause/`     | Pause monitoring          |
+| `DELETE` | `/monitors/{id}/`           | Remove a monitor          |
 
 ---
 
 ### POST `/monitors/` — Register a Monitor
 
 Request:
+
 ```json
 {
   "id": "device-123",
@@ -78,6 +79,7 @@ Request:
 ```
 
 Response `201 Created`:
+
 ```json
 {
   "message": "Monitor 'device-123' registered successfully.",
@@ -98,18 +100,23 @@ Response `201 Created`:
 ### POST `/monitors/{id}/heartbeat/` — Send Heartbeat
 
 Response `200 OK`:
+
 ```json
-{"message": "Heartbeat received. Timer has been reset to 60 seconds."}
+{ "message": "Heartbeat received. Timer has been reset to 60 seconds." }
 ```
 
 Response `404 Not Found`:
+
 ```json
-{"error": "No monitor with ID 'device-123' was found."}
+{ "error": "No monitor with ID 'device-123' was found." }
 ```
 
 Response `409 Conflict` (monitor is down):
+
 ```json
-{"error": "Monitor 'device-123' has already gone down. Please register a new monitor to start tracking it again."}
+{
+  "error": "Monitor 'device-123' has already gone down. Please register a new monitor to start tracking it again."
+}
 ```
 
 ---
@@ -117,8 +124,11 @@ Response `409 Conflict` (monitor is down):
 ### POST `/monitors/{id}/pause/` — Pause a Monitor
 
 Response `200 OK`:
+
 ```json
-{"message": "Monitor 'device-123' has been paused. Send a heartbeat to resume monitoring."}
+{
+  "message": "Monitor 'device-123' has been paused. Send a heartbeat to resume monitoring."
+}
 ```
 
 ---
@@ -126,8 +136,9 @@ Response `200 OK`:
 ### DELETE `/monitors/{id}/` — Remove a Monitor
 
 Response `200 OK`:
+
 ```json
-{"message": "Monitor 'device-123' has been removed successfully."}
+{ "message": "Monitor 'device-123' has been removed successfully." }
 ```
 
 ---
