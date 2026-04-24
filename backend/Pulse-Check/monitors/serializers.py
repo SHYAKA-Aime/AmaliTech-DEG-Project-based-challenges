@@ -14,6 +14,8 @@ class MonitorSerializer(serializers.ModelSerializer):
 
 
 class MonitorCreateSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(max_length=100, validators=[])
+
     class Meta:
         model = Monitor
         fields = ['id', 'timeout', 'alert_email']
